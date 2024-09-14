@@ -1,0 +1,5 @@
+#!/bin/sh
+
+source "./helper.sh"
+
+__fast__gen_template "${1}" "${2}"

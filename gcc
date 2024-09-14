@@ -1,0 +1,12 @@
+#!/bin/sh
+
+container_manager="podman"
+container_run_command="${container_manager} run -ti --rm -v `pwd`:/var/app -w /var/app"
+
+cmd="${1}"
+shift
+case "${cmd}" in
+  pull) [[ $(podman images --format {{.Names}}) =~ "docker.io/gcc" ]] || podman pull docker.io/gcc;;
+  run)
+    eval "${container_run_command} docker.io/gcc gcc $@";;
+esac
